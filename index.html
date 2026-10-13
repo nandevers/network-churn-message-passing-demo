@@ -97,6 +97,19 @@
         <div class="boundary"><strong>Important boundary</strong><span>This public demo is a new, synthetic teaching example. It is not the proprietary Favorites algorithm, its source code, its parameters, or a reproduction of its performance. No customer, carrier or subscriber data is included.</span></div>
       </div>
     </section>
+    <section class="references-section">
+      <div class="references-heading">
+        <div><p class="eyebrow">04 / RESEARCH CONTEXT</p><h2>Ideas with a research trail.</h2></div>
+        <p>These sources ground the modeling concepts and the telecom use case. They are context for this demonstration, not validation of the historical Favorites model.</p>
+      </div>
+      <div class="references-grid">
+        <article class="reference-card"><span class="panel-kicker">FOUNDATIONS · PROBABILISTIC MODELS</span><h3>Koller &amp; Friedman · 2009</h3><p><em>Probabilistic Graphical Models: Principles and Techniques.</em> A comprehensive reference on model representation, inference and learning.</p><a href="https://mitpress.mit.edu/9780262013192/probabilistic-graphical-models/" target="_blank" rel="noreferrer">MIT Press ↗</a></article>
+        <article class="reference-card"><span class="panel-kicker">FOUNDATIONS · MESSAGE PASSING</span><h3>Kschischang, Frey &amp; Loeliger · 2001</h3><p>“Factor graphs and the sum-product algorithm.” A foundational treatment of local message passing for probabilistic inference. The demo’s noisy-OR update is a different, simplified rule.</p><a href="https://doi.org/10.1109/18.910572" target="_blank" rel="noreferrer">IEEE Transactions on Information Theory ↗</a></article>
+        <article class="reference-card"><span class="panel-kicker">APPLICATION · TELECOM CHURN</span><h3>Verbeke et al. · 2014</h3><p>“Social network analysis for customer churn prediction.” Studies relational learning and network effects in real telecom churn data.</p><a href="https://doi.org/10.1016/j.asoc.2013.09.017" target="_blank" rel="noreferrer">Applied Soft Computing ↗</a></article>
+        <article class="reference-card"><span class="panel-kicker">EVALUATION · NETWORK DESIGN</span><h3>Óskarsdóttir et al. · 2017</h3><p>“Social network analytics for churn prediction in telco.” Across eight call-detail datasets, network construction affected results; collective inference did not improve performance in their benchmark.</p><a href="https://doi.org/10.1016/j.eswa.2017.05.028" target="_blank" rel="noreferrer">Expert Systems with Applications ↗</a></article>
+      </div>
+      <p class="references-caveat">Predictive association does not by itself establish causal peer influence. These publications provide scientific context; they do not verify or reproduce Favorites or its recalled 0.80–0.85 ROC-AUC.</p>
+    </section>
     <section class="closing">
       <div><p class="eyebrow">KEEP EXPLORING</p><h2>Good models begin<br>with better questions.</h2></div>
       <div class="closing-links"><a href="https://github.com/nandevers/network-churn-message-passing-demo" target="_blank" rel="noreferrer">Source code on GitHub ↗</a><a href="https://www.linkedin.com/in/fernando-barbosa-ds/" target="_blank" rel="noreferrer">Connect with Fernando ↗</a></div>

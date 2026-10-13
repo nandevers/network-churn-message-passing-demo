@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b20">
+  <meta name="description" content="An interactive, synthetic demonstration of message passing and network exposure for churn-risk intuition. Not the proprietary Favorites model.">
+  <meta property="og:title" content="Network Signal — a message-passing demonstration">
+  <meta property="og:description" content="Watch a synthetic churn signal travel through a weighted network.">
+  <title>Network Signal — Message Passing Demo</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./graph.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://nandevers.github.io/" aria-label="Fernando Barbosa portfolio">
+      <span class="brand-mark">FB</span><span>FIELD NOTES <i> / APPLIED AI</i></span>
+    </a>
+    <a class="back-link" href="https://nandevers.github.io/">← Fernando Barbosa</a>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> NETWORK SCIENCE · INTERACTIVE DEMONSTRATION</p>
+        <h1>When one node<br>moves, <em>who feels it?</em></h1>
+        <p class="dek">A synthetic network makes one idea visible: a change in one influential member can alter the risk signal around them.</p>
+        <p class="hero-note">Explore the message-passing intuition behind network-aware churn analysis. The graph and values below are invented for demonstration.</p>
+        <a class="scroll-link" href="#simulator">Explore the simulation <span>↓</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-core">A</div><div class="art-node n1">B</div><div class="art-node n2">C</div><div class="art-node n3">D</div><div class="art-node n4">E</div><div class="art-node n5">F</div>
+        <svg viewBox="0 0 500 390" class="art-lines"><path d="M250 195L116 108M250 195L385 102M250 195L95 275M250 195L388 276M116 108L82 46M116 108L205 45M385 102L437 51M385 102L438 177M95 275L48 340M95 275L205 345M388 276L456 340M388 276L302 350M205 45L302 50M438 177L456 240"/></svg>
+        <div class="art-caption">A small signal<br>can travel far.</div>
+      </div>
+    </section>
+    <div class="ribbon"><span>WEIGHTED TIES</span><b>→</b><span>PASSING SIGNALS</span><b>→</b><span>CHANGING EXPOSURE</span></div>
+    <section id="simulator" class="sim-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">01 / PLAY WITH THE NETWORK</p><h2>Start with one signal.</h2></div>
+        <p class="section-description">Choose a starting node. Step through a few rounds and watch its neighbors—and their neighbors—receive weighted messages.</p>
+      </div>
+      <div class="sim-layout">
+        <div class="network-panel">
+          <div class="panel-head"><div><span class="panel-kicker">SYNTHETIC NETWORK</span><strong id="round-label">ROUND 0</strong></div><span class="network-count">12 MEMBERS&nbsp; / &nbsp;17 TIES</span></div>
+          <svg id="network" viewBox="0 0 760 500" role="img" aria-labelledby="graph-title graph-desc">
+            <title id="graph-title">Animated synthetic member network</title>
+            <desc id="graph-desc">Twelve fictional members connected by weighted ties. A selected member begins with elevated churn risk; messages update neighboring risk estimates over each round.</desc>
+            <g id="edges"></g><g id="packets"></g><g id="nodes"></g>
+          </svg>
+          <div class="legend"><span><i class="key-dot low"></i>Lower exposure</span><span><i class="key-dot medium"></i>Rising exposure</span><span><i class="key-dot high"></i>Elevated exposure</span><span><i class="key-line"></i>Tie strength</span></div>
+        </div>
+        <aside class="control-panel">
+          <p class="panel-kicker">SCENARIO CONTROLS</p>
+          <label for="seed-select">Initial signal</label>
+          <select id="seed-select" aria-label="Choose initial signal node">
+            <option value="A">Member A · highly connected</option><option value="B">Member B · peripheral</option>
+            <option value="C">Member C · bridge</option><option value="D">Member D · core</option>
+            <option value="E">Member E · peripheral</option><option value="F">Member F · bridge</option>
+            <option value="G">Member G · core</option><option value="H">Member H · peripheral</option>
+            <option value="I">Member I · bridge</option><option value="J">Member J · peripheral</option>
+            <option value="K">Member K · core</option><option value="L">Member L · peripheral</option>
+          </select>
+          <div class="range-head"><label for="strength">Message strength</label><output id="strength-value" for="strength">0.55</output></div>
+          <input id="strength" type="range" min="0" max="0.95" step="0.05" value="0.55">
+          <div class="range-scale"><span>Muted</span><span>Strong</span></div>
+          <div class="controls">
+            <button id="play-button" class="button button-primary" type="button">▶&nbsp; Play</button>
+            <button id="step-button" class="button" type="button">Step&nbsp; →</button>
+            <button id="reset-button" class="button button-quiet" type="button">Reset</button>
+          </div>
+          <div class="readout"><span class="panel-kicker">MOST EXPOSED · EXCLUDING SEED</span><strong id="most-exposed">—</strong><div class="readout-track"><i id="exposure-bar"></i></div><span id="exposure-caption">Choose Play or Step to begin.</span></div>
+          <p class="control-foot">Each round updates every member at once from the previous round’s signals.</p>
+        </aside>
+      </div>
+    </section>
+    <section class="method-section">
+      <div class="method-aside"><p class="eyebrow">02 / THE MECHANISM</p><h2>A simple<br>message rule.</h2><p>Each member sends a fraction of their current signal along each tie. A noisy-OR combines incoming messages while preserving an individual baseline.</p></div>
+      <div class="method-main">
+        <div class="equation" aria-label="Risk at the next round equals one minus the individual baseline survival multiplied by the survival from every incoming message.">
+          <span class="eq-left">pᵢ (t+1)</span><span class="eq-equals">=</span><span class="eq-right">1 − (1 − pᵢ⁰) <span class="product">∏</span><sub>j ∈ N(i)</sub> (1 − β · wⱼᵢ · pⱼ(t))</span>
+        </div>
+        <div class="definitions">
+          <p><b>pᵢ⁰</b><span>synthetic baseline risk for member i</span></p>
+          <p><b>β</b><span>the message-strength control</span></p>
+          <p><b>wⱼᵢ</b><span>tie strength from member j to i</span></p>
+          <p><b>pⱼ(t)</b><span>member j’s signal in the current round</span></p>
+        </div>
+        <p class="method-caveat">This compact rule is for explanation, not inference. Real churn models need validated data, leakage controls, calibration, time-aware evaluation, governance and a clear intervention policy.</p>
+      </div>
+    </section>
+    <section class="story-section">
+      <div class="story-copy"><p class="eyebrow">03 / THE PROFESSIONAL STORY</p><h2>Built from a real question.<br>Shown with a new example.</h2></div>
+      <div class="story-detail">
+        <p>At Nextel, I developed a proprietary graph-based churn model called <strong>Favorites</strong>. It drew on network influence, message-passing ideas and probabilistic graphical models to examine how churn by an influential member could change risk across their close network. I explored graph tooling including NetworkX and graph databases.</p>
+        <p class="metric-note"><span class="metric">≈0.80–0.85</span><span><strong>Historical ROC-AUC, as recalled by the author.</strong><br>The original model, evaluation data and artifacts are unavailable, so this figure has not been independently verified or reproduced here.</span></p>
+        <div class="boundary"><strong>Important boundary</strong><span>This public demo is a new, synthetic teaching example. It is not the proprietary Favorites algorithm, its source code, its parameters, or a reproduction of its performance. No customer, carrier or subscriber data is included.</span></div>
+      </div>
+    </section>
+    <section class="closing">
+      <div><p class="eyebrow">KEEP EXPLORING</p><h2>Good models begin<br>with better questions.</h2></div>
+      <div class="closing-links"><a href="https://github.com/nandevers/network-churn-message-passing-demo" target="_blank" rel="noreferrer">Source code on GitHub ↗</a><a href="https://www.linkedin.com/in/fernando-barbosa-ds/" target="_blank" rel="noreferrer">Connect with Fernando ↗</a></div>
+    </section>
+  </main>
+  <footer><span>Fernando Barbosa · Applied AI & Decision Science</span><span>Synthetic illustration · No customer data · Personal work</span></footer>
+</body>
+</html>

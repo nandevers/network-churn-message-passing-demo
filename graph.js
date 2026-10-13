@@ -171,7 +171,7 @@
       const value = probabilities.get(id) ?? member(id).base;
       const circle = group.querySelector(".node-circle");
       circle.setAttribute("class", "node-circle " + (id === seed ? "node-seed" : value >= .35 ? "node-high" : value >= .15 ? "node-medium" : "node-low"));
-      group.querySelector(".node-halo").setAttribute("stroke", id === seed ? "#c4f36b65" : "transparent");
+      group.querySelector(".node-halo").setAttribute("stroke", id === seed ? "#7897c3" : "transparent");
       group.setAttribute("aria-label", "Synthetic member " + id + ", " + member(id).role + ", illustrative risk signal " + Math.round(value * 100) + " percent. Select as initial signal.");
       const title = group.querySelector("title");
       title.textContent = "Synthetic member " + id + " · " + member(id).role + " · illustrative signal " + Math.round(value * 100) + "%";

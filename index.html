@@ -3,22 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101b20">
+  <meta name="theme-color" content="#081b41">
   <meta name="description" content="An interactive, synthetic demonstration of message passing and network exposure for churn-risk intuition. Not the proprietary Favorites model.">
   <meta property="og:title" content="Network Signal — a message-passing demonstration">
   <meta property="og:description" content="Watch a synthetic churn signal travel through a weighted network.">
   <title>Network Signal — Message Passing Demo</title>
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./graph.js" defer></script>
+  <link rel="stylesheet" href="/assets/css/portfolio.css"><link rel="stylesheet" href="./styles.css">
+  <script src="./graph.js" defer></script><script src="/assets/js/site-i18n.js" defer></script>
 </head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="https://nandevers.github.io/" aria-label="Fernando Barbosa portfolio">
-      <span class="brand-mark">FB</span><span>FIELD NOTES <i> / APPLIED AI</i></span>
-    </a>
-    <a class="back-link" href="https://nandevers.github.io/">← Fernando Barbosa</a>
-  </header>
-  <main>
+<body class="demo-page"><a class="skip" href="#main">Skip to content</a>
+  <header class="masthead"><a class="identity" href="/" aria-label="Fernando Barbosa home"><span class="monogram">fb.</span><span>Fernando Barbosa</span></a><div class="header-tools"><nav aria-label="Main navigation"><a href="/">Home</a><a href="/experience/">Experience</a><a href="/portfolio/" aria-current="page">Portfolio</a><a href="/writing/">Writing</a><a href="/connect/">Connect</a></nav><label class="language-control"><span class="sr-only">Language</span><select id="language-select" aria-label="Language"><option value="en">EN</option><option value="pt">PT</option><option value="es">ES</option></select></label></div></header>
+  <main id="main">
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow"><span class="live-dot"></span> NETWORK SCIENCE · INTERACTIVE DEMONSTRATION</p>
@@ -42,7 +37,7 @@
       </div>
       <div class="sim-layout">
         <div class="network-panel">
-          <div class="panel-head"><div><span class="panel-kicker">SYNTHETIC NETWORK</span><strong id="round-label">ROUND 0</strong></div><span class="network-count">12 MEMBERS&nbsp; / &nbsp;17 TIES</span></div>
+          <div class="panel-head"><div><span class="panel-kicker">SYNTHETIC NETWORK</span><strong id="round-label">ROUND 0</strong></div><span class="network-count">12 MEMBERS&nbsp; / &nbsp;18 TIES</span></div>
           <svg id="network" viewBox="0 0 760 500" role="img" aria-labelledby="graph-title graph-desc">
             <title id="graph-title">Animated synthetic member network</title>
             <desc id="graph-desc">Twelve fictional members connected by weighted ties. A selected member begins with elevated churn risk; messages update neighboring risk estimates over each round.</desc>
@@ -58,8 +53,8 @@
             <option value="C">Member C · bridge</option><option value="D">Member D · core</option>
             <option value="E">Member E · peripheral</option><option value="F">Member F · bridge</option>
             <option value="G">Member G · core</option><option value="H">Member H · peripheral</option>
-            <option value="I">Member I · bridge</option><option value="J">Member J · peripheral</option>
-            <option value="K">Member K · core</option><option value="L">Member L · peripheral</option>
+            <option value="I">Member I · bridge</option><option value="J">Member J · core</option>
+            <option value="K">Member K · peripheral</option><option value="L">Member L · peripheral</option>
           </select>
           <div class="range-head"><label for="strength">Message strength</label><output id="strength-value" for="strength">0.55</output></div>
           <input id="strength" type="range" min="0" max="0.95" step="0.05" value="0.55">
@@ -115,6 +110,6 @@
       <div class="closing-links"><a href="https://github.com/nandevers/network-churn-message-passing-demo" target="_blank" rel="noreferrer">Source code on GitHub ↗</a><a href="https://www.linkedin.com/in/fernando-barbosa-ds/" target="_blank" rel="noreferrer">Connect with Fernando ↗</a></div>
     </section>
   </main>
-  <footer><span>Fernando Barbosa · Applied AI & Decision Science</span><span>Synthetic illustration · No customer data · Personal work</span></footer>
+  <footer><span>Fernando Barbosa</span><div><a href="https://github.com/nandevers">GitHub</a><a href="https://fernando-liaison.medium.com/">Medium</a><a href="https://www.linkedin.com/in/fernando-barbosa-ds/">LinkedIn</a></div><small>Professional views are my own. Employer names describe experience.</small></footer>
 </body>
 </html>

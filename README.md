@@ -32,6 +32,22 @@ p_i(t+1) = 1 - (1 - p_i^0) × ∏_{j ∈ N(i)} (1 - β × w_ji × p_j(t))
 
 This noisy-OR-style equation is chosen to make weighted exposure and message passing understandable. It is not asserted to match the proprietary Favorites formulation. It has no fitted parameters, learned network weights, survival process, censoring, calibrated probabilities, intervention effects or measured predictive performance.
 
+## Selected scientific references
+
+These sources provide theoretical foundations and domain context. They do **not** validate or reproduce the historical Favorites model or its recalled ROC-AUC. The browser demo uses a simplified noisy-OR-style update, not a claim to implement canonical sum-product belief propagation.
+
+### Probabilistic models and message passing
+
+- Koller, D. & Friedman, N. (2009). *Probabilistic Graphical Models: Principles and Techniques.* MIT Press. [Publisher page](https://mitpress.mit.edu/9780262013192/probabilistic-graphical-models/). Foundational coverage of graphical-model representation, inference and learning.
+- Kschischang, F. R., Frey, B. J. & Loeliger, H.-A. (2001). “Factor graphs and the sum-product algorithm.” *IEEE Transactions on Information Theory*, 47(2), 498–519. [https://doi.org/10.1109/18.910572](https://doi.org/10.1109/18.910572). A foundational account of local messages for probabilistic inference; the demo's recursion is a different illustrative rule.
+
+### Network methods for telecom churn
+
+- Verbeke, W., Martens, D., Mues, C. & Baesens, B. (2014). “Social network analysis for customer churn prediction.” *Applied Soft Computing*, 14(C), 431–446. [https://doi.org/10.1016/j.asoc.2013.09.017](https://doi.org/10.1016/j.asoc.2013.09.017). Studies relational methods and higher-order network information in real telecom churn data.
+- Óskarsdóttir, M., Bravo, C., Verbeke, W., Sarraute, C., Baesens, B. & Vanthienen, J. (2017). “Social network analytics for churn prediction in telco: Model building, evaluation and network architecture.” *Expert Systems with Applications*, 85, 204–220. [https://doi.org/10.1016/j.eswa.2017.05.028](https://doi.org/10.1016/j.eswa.2017.05.028). Benchmarks methods across eight telco datasets; network construction mattered, and collective inference did not improve results in that study.
+
+Predictive association alone does not establish causal peer influence. Results depend on how ties are defined, data quality, time windows and validation design.
+
 ## Why a real deployment needs much more
 
 A production churn system would need a defined prediction horizon and outcome, timestamp-valid network construction, leakage and selection-bias checks, temporal validation, appropriate customer-level baselines, calibration, fairness and privacy review, robustness tests, operational monitoring, and a governed intervention policy. Network dependence also means independence assumptions in a simple noisy-OR may be inappropriate.
